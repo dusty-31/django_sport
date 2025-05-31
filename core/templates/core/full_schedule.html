@@ -1,0 +1,472 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}PowerZone - Розклад{% endblock %}
+
+{% block content %}
+    <!-- Schedule Page -->
+    <section class="pt-24 pb-16 bg-gray-50 min-h-screen">
+        <div class="container mx-auto px-4">
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-r from-secondary to-gray-800 rounded-2xl shadow-xl p-8 mb-8 text-white text-center">
+                <h1 class="text-4xl font-bold mb-3">Розклад занять</h1>
+                <p class="text-lg text-white/90 max-w-2xl mx-auto mb-6">
+                    Знайдіть ідеальний час для ваших тренувань
+                </p>
+                <button class="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded-lg font-medium transition-all"
+                        onclick="scrollToSchedule()">
+                    <i class="fas fa-calendar mr-2"></i>Переглянути розклад
+                </button>
+            </div>
+
+            <!-- Schedule Filter -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <h2 class="text-xl font-bold text-secondary mb-4">Фільтр за типом</h2>
+                <div class="flex flex-wrap gap-3">
+                    <button class="workout-filter active bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
+                            data-filter="all">
+                        Всі заняття
+                    </button>
+                    <button class="workout-filter bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-200"
+                            data-filter="cardio">
+                        <span class="w-3 h-3 bg-primary rounded-full inline-block mr-2"></span>Кардіо
+                    </button>
+                    <button class="workout-filter bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-200"
+                            data-filter="strength">
+                        <span class="w-3 h-3 bg-blue-400 rounded-full inline-block mr-2"></span>Силові
+                    </button>
+                    <button class="workout-filter bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-200"
+                            data-filter="crossfit">
+                        <span class="w-3 h-3 bg-green-400 rounded-full inline-block mr-2"></span>Кросфіт
+                    </button>
+                    <button class="workout-filter bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-200"
+                            data-filter="boxing">
+                        <span class="w-3 h-3 bg-red-500 rounded-full inline-block mr-2"></span>Бокс
+                    </button>
+                    <button class="workout-filter bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition-all hover:bg-gray-200"
+                            data-filter="yoga">
+                        <span class="w-3 h-3 bg-purple-400 rounded-full inline-block mr-2"></span>Йога
+                    </button>
+                </div>
+            </div>
+
+            <!-- Schedule Table -->
+            <div id="schedule-table" class="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-secondary text-white">
+                        <tr>
+                            <th class="py-3 px-3 text-left font-semibold text-sm w-20">Час</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Пн</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Вт</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Ср</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Чт</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Пт</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Сб</th>
+                            <th class="py-3 px-2 text-center font-semibold text-sm">Нд</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- 06:00-07:00 -->
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3 px-3 font-medium text-secondary bg-gray-50 text-xs">06:00<br>07:00</td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Кардіо Burn</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 8/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-blue-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="strength">
+                                    <div class="font-semibold mb-1">Power Lifting</div>
+                                    <div class="opacity-80 mb-1">👤 Юрій</div>
+                                    <div class="opacity-70">👥 6/10</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">CrossFit WOD</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 10/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">HIIT Кардіо</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 12/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">CrossFit</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 8/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-purple-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="yoga">
+                                    <div class="font-semibold mb-1">Ранкова Йога</div>
+                                    <div class="opacity-80 mb-1">👤 Софія</div>
+                                    <div class="opacity-70">👥 5/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="text-gray-400 text-xs">Вихідний</div>
+                            </td>
+                        </tr>
+
+                        <!-- 08:00-09:00 -->
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3 px-3 font-medium text-secondary bg-gray-50 text-xs">08:00<br>09:00</td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-blue-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="strength">
+                                    <div class="font-semibold mb-1">Силові початк.</div>
+                                    <div class="opacity-80 mb-1">👤 Юрій</div>
+                                    <div class="opacity-70">👥 7/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">CrossFit Basics</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 9/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-blue-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="strength">
+                                    <div class="font-semibold mb-1">Power Training</div>
+                                    <div class="opacity-80 mb-1">👤 Юрій</div>
+                                    <div class="opacity-70">👥 8/10</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">Functional</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 11/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Zumba</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 15/20</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-red-500 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="boxing">
+                                    <div class="font-semibold mb-1">Бокс початк.</div>
+                                    <div class="opacity-80 mb-1">👤 Макс</div>
+                                    <div class="opacity-70">👥 6/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-purple-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="yoga">
+                                    <div class="font-semibold mb-1">Хатха Йога</div>
+                                    <div class="opacity-80 mb-1">👤 Софія</div>
+                                    <div class="opacity-70">👥 8/15</div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- 12:00-13:00 -->
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3 px-3 font-medium text-secondary bg-gray-50 text-xs">12:00<br>13:00</td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Обідня енергія</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 6/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-purple-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="yoga">
+                                    <div class="font-semibold mb-1">Йога Флоу</div>
+                                    <div class="opacity-80 mb-1">👤 Софія</div>
+                                    <div class="opacity-70">👥 10/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-red-500 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="boxing">
+                                    <div class="font-semibold mb-1">Бойова підг.</div>
+                                    <div class="opacity-80 mb-1">👤 Макс</div>
+                                    <div class="opacity-70">👥 8/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-blue-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="strength">
+                                    <div class="font-semibold mb-1">Обідня сила</div>
+                                    <div class="opacity-80 mb-1">👤 Юрій</div>
+                                    <div class="opacity-70">👥 5/10</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Dance Cardio</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 12/20</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">Saturday WOD</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 7/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="text-gray-400 text-xs">Вихідний</div>
+                            </td>
+                        </tr>
+
+                        <!-- 18:00-19:00 -->
+                        <tr class="border-b border-gray-100">
+                            <td class="py-3 px-3 font-medium text-secondary bg-gray-50 text-xs">18:00<br>19:00</td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">Evening CrossFit</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="text-yellow-300 font-bold">👥 15/15 ПОВНИЙ</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-red-500 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="boxing">
+                                    <div class="font-semibold mb-1">Boxing Club</div>
+                                    <div class="opacity-80 mb-1">👤 Макс</div>
+                                    <div class="opacity-70">👥 10/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">CrossFit RX</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 12/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-red-500 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="boxing">
+                                    <div class="font-semibold mb-1">Спаринг</div>
+                                    <div class="opacity-80 mb-1">👤 Макс</div>
+                                    <div class="opacity-70">👥 8/10</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-blue-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="strength">
+                                    <div class="font-semibold mb-1">Вечірня сила</div>
+                                    <div class="opacity-80 mb-1">👤 Юрій</div>
+                                    <div class="text-yellow-300 font-bold">👥 10/10 ПОВНИЙ</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Weekend Burn</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 11/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="text-gray-400 text-xs">Вихідний</div>
+                            </td>
+                        </tr>
+
+                        <!-- 19:00-20:00 -->
+                        <tr>
+                            <td class="py-3 px-3 font-medium text-secondary bg-gray-50 text-xs">19:00<br>20:00</td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-purple-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="yoga">
+                                    <div class="font-semibold mb-1">Вечірня Йога</div>
+                                    <div class="opacity-80 mb-1">👤 Софія</div>
+                                    <div class="opacity-70">👥 9/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Кардіо мікс</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 13/18</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-purple-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="yoga">
+                                    <div class="font-semibold mb-1">Інь Йога</div>
+                                    <div class="opacity-80 mb-1">👤 Софія</div>
+                                    <div class="opacity-70">👥 7/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-primary text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="cardio">
+                                    <div class="font-semibold mb-1">Табата</div>
+                                    <div class="opacity-80 mb-1">👤 Іван</div>
+                                    <div class="opacity-70">👥 14/18</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-purple-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="yoga">
+                                    <div class="font-semibold mb-1">Релакс Йога</div>
+                                    <div class="opacity-80 mb-1">👤 Софія</div>
+                                    <div class="opacity-70">👥 6/15</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="workout-card bg-green-400 text-white px-2 py-2 rounded-lg text-xs font-medium cursor-pointer hover:opacity-80 transition-all"
+                                     data-type="crossfit">
+                                    <div class="font-semibold mb-1">Saturday Night</div>
+                                    <div class="opacity-80 mb-1">👤 Анна</div>
+                                    <div class="opacity-70">👥 8/12</div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-2 text-center">
+                                <div class="text-gray-400 text-xs">Вихідний</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Trainers -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+                <h3 class="text-lg font-bold text-secondary mb-4 text-center">Наші тренери</h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop&crop=face"
+                                 alt="Іван Мельник"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-semibold text-secondary text-sm">Іван Мельник</h4>
+                        <p class="text-xs text-gray-600">Кардіо тренер</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1583468982228-19f19164aee2?w=100&h=100&fit=crop&crop=face"
+                                 alt="Юрій Неонов"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-semibold text-secondary text-sm">Юрій Неонов</h4>
+                        <p class="text-xs text-gray-600">Силовий тренер</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=100&h=100&fit=crop&crop=face"
+                                 alt="Анна Рибчак"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-semibold text-secondary text-sm">Анна Рибчак</h4>
+                        <p class="text-xs text-gray-600">CrossFit тренер</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1607962837359-5e7e89f86776?w=100&h=100&fit=crop&crop=face"
+                                 alt="Макс Вірастюк"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-semibold text-secondary text-sm">Макс Вірастюк</h4>
+                        <p class="text-xs text-gray-600">Тренер з боксу</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mx-auto mb-2 shadow-md">
+                            <img src="https://images.unsplash.com/photo-1506629905607-676890d30a9b?w=100&h=100&fit=crop&crop=face"
+                                 alt="Софія Дзень"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="font-semibold text-secondary text-sm">Софія Дзень</h4>
+                        <p class="text-xs text-gray-600">Інструктор йоги</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Call to Action -->
+            <div class="bg-gradient-to-r from-primary to-orange-300 rounded-xl shadow-lg p-6 text-center text-white">
+                <h2 class="text-2xl font-bold mb-3">Готові записатися?</h2>
+                <p class="text-white/90 mb-4">
+                    Оберіть зручний час та почніть свій фітнес-шлях з PowerZone
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                    {% if user.is_authenticated %}
+                        <button class="bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all">
+                            <i class="fas fa-calendar-plus mr-2"></i>Записатися на заняття
+                        </button>
+                    {% else %}
+                        <a href="{% url 'core:register' %}"
+                           class="bg-white text-primary px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-all">
+                            <i class="fas fa-user-plus mr-2"></i>Зареєструватися
+                        </a>
+                    {% endif %}
+                    <button class="border-2 border-white text-white hover:bg-white hover:text-primary px-6 py-2 rounded-lg font-semibold transition-all">
+                        <i class="fas fa-phone mr-2"></i>Зв'язатися з нами
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function scrollToSchedule() {
+            document.getElementById('schedule-table').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.workout-filter');
+            const workoutCards = document.querySelectorAll('.workout-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const filter = this.dataset.filter;
+
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-100', 'text-gray-700');
+                    });
+
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    this.classList.remove('bg-gray-100', 'text-gray-700');
+
+                    // Filter workout cards
+                    workoutCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.type === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}

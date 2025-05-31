@@ -10,8 +10,8 @@
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="{% url 'core:index' %}" class="text-white hover:text-primary transition-colors font-medium">Головна</a>
-                <a href="#services" class="text-white hover:text-primary transition-colors font-medium">Послуги</a>
-                <a href="#schedule" class="text-white hover:text-primary transition-colors font-medium">Розклад</a>
+                <a href="{% url 'core:services' %}" class="text-white hover:text-primary transition-colors font-medium">Послуги</a>
+                <a href="{% url 'core:full_schedule' %}" class="text-white hover:text-primary transition-colors font-medium">Розклад</a>
                 <a href="#pricing" class="text-white hover:text-primary transition-colors font-medium">Абонементи</a>
                 {% if user.is_authenticated %}
                     <!-- User Profile Dropdown -->
@@ -25,20 +25,24 @@
                         <!-- Dropdown Menu -->
                         <div class="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div class="py-2">
-                                <a href="{% url 'core:profile' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                                <a href="{% url 'core:profile' %}"
+                                   class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                                     <i class="fas fa-user mr-3 text-primary"></i>
                                     Мій профіль
                                 </a>
-                                <a href="{% url 'core:my_workouts' %}" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                                <a href="{% url 'core:my_workouts' %}"
+                                   class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                                     <i class="fas fa-calendar-alt mr-3 text-primary"></i>
                                     Мої тренування
                                 </a>
-                                <a href="#" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
+                                <a href="{% url 'core:my_subscriptions' %}"
+                                   class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 transition-colors">
                                     <i class="fas fa-credit-card mr-3 text-primary"></i>
-                                    Абонементи
+                                    Мої абонементи
                                 </a>
                                 <div class="border-t border-gray-100 my-2"></div>
-                                <a href="{% url 'core:logout' %}" class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
+                                <a href="{% url 'core:logout' %}"
+                                   class="flex items-center px-4 py-3 text-red-600 hover:bg-red-50 transition-colors">
                                     <i class="fas fa-sign-out-alt mr-3"></i>
                                     Вихід
                                 </a>
@@ -46,8 +50,10 @@
                         </div>
                     </div>
                 {% else %}
-                    <a href="{% url 'core:login' %}" class="text-white hover:text-primary transition-colors font-medium">Вхід</a>
-                    <a href="{% url 'core:register' %}" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">Реєстрація</a>
+                    <a href="{% url 'core:login' %}"
+                       class="text-white hover:text-primary transition-colors font-medium">Вхід</a>
+                    <a href="{% url 'core:register' %}"
+                       class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">Реєстрація</a>
                 {% endif %}
             </div>
 
@@ -60,9 +66,10 @@
         <!-- Mobile Menu -->
         <div class="lg:hidden hidden bg-secondary border-t border-gray-700" id="mobile-menu">
             <div class="px-4 py-6 space-y-4">
-                <a href="{% url 'core:index' %}" class="block text-white hover:text-primary transition-colors">Головна</a>
-                <a href="#services" class="block text-white hover:text-primary transition-colors">Послуги</a>
-                <a href="#schedule" class="block text-white hover:text-primary transition-colors">Розклад</a>
+                <a href="{% url 'core:index' %}"
+                   class="block text-white hover:text-primary transition-colors">Головна</a>
+                <a href="{% url 'core:services' %}" class="block text-white hover:text-primary transition-colors">Послуги</a>
+                <a href="{% url 'core:full_schedule' %}" class="block text-white hover:text-primary transition-colors">Розклад</a>
                 <a href="#pricing" class="block text-white hover:text-primary transition-colors">Абонементи</a>
                 {% if user.is_authenticated %}
                     <div class="border-t border-gray-700 pt-4 mt-4">
@@ -70,14 +77,20 @@
                             <i class="fas fa-user-circle text-primary text-2xl"></i>
                             <span class="text-white font-medium">{{ user.get_full_name|default:user.username }}</span>
                         </div>
-                        <a href="{% url 'core:profile' %}" class="block text-white hover:text-primary transition-colors pl-6 py-2">Мій профіль</a>
-                        <a href="{% url 'core:my_workouts' %}" class="block text-white hover:text-primary transition-colors pl-6 py-2">Мої тренування</a>
-                        <a href="#" class="block text-white hover:text-primary transition-colors pl-6 py-2">Абонементи</a>
-                        <a href="{% url 'core:logout' %}" class="block text-red-400 hover:text-red-300 transition-colors pl-6 py-2">Вихід</a>
+                        <a href="{% url 'core:profile' %}"
+                           class="block text-white hover:text-primary transition-colors pl-6 py-2">Мій профіль</a>
+                        <a href="{% url 'core:my_workouts' %}"
+                           class="block text-white hover:text-primary transition-colors pl-6 py-2">Мої тренування</a>
+                        <a href="{% url 'core:my_subscriptions' %}"
+                           class="block text-white hover:text-primary transition-colors pl-6 py-2">Мої абонементи</a>
+                        <a href="{% url 'core:logout' %}"
+                           class="block text-red-400 hover:text-red-300 transition-colors pl-6 py-2">Вихід</a>
                     </div>
                 {% else %}
-                    <a href="{% url 'core:login' %}" class="block text-white hover:text-primary transition-colors">Вхід</a>
-                    <a href="{% url 'core:register' %}" class="block bg-primary text-white px-4 py-2 rounded-full text-center">Реєстрація</a>
+                    <a href="{% url 'core:login' %}"
+                       class="block text-white hover:text-primary transition-colors">Вхід</a>
+                    <a href="{% url 'core:register' %}"
+                       class="block bg-primary text-white px-4 py-2 rounded-full text-center">Реєстрація</a>
                 {% endif %}
             </div>
         </div>

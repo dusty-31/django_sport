@@ -1,0 +1,271 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}PowerZone - Мої абонементи{% endblock %}
+
+{% block content %}
+    <!-- My Subscriptions Section -->
+    <section class="pt-24 pb-16 bg-gray-50 min-h-screen">
+        <div class="container mx-auto px-4">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li><a href="{% url 'core:index' %}" class="text-gray-500 hover:text-primary">Головна</a></li>
+                    <li><i class="fas fa-chevron-right text-gray-400 mx-2"></i></li>
+                    <li class="text-gray-700 font-medium">Мої абонементи</li>
+                </ol>
+            </nav>
+
+            <!-- Header -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-secondary mb-2">Мої абонементи</h1>
+                        <p class="text-gray-600">Управляйте своїми підписками та платежами</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-4 lg:mt-0">
+                        <button class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-xl font-bold transition-all inline-flex items-center">
+                            <i class="fas fa-credit-card mr-2"></i>Купити абонемент
+                        </button>
+                        <button class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-xl font-bold transition-all inline-flex items-center">
+                            <i class="fas fa-history mr-2"></i>Історія платежів
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Subscription Status -->
+            {% if current_subscription %}
+                <div class="bg-gradient-to-r from-primary to-orange-600 rounded-2xl shadow-lg p-6 mb-8 text-white">
+                    <div class="grid lg:grid-cols-4 gap-6 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">{{ current_subscription.name }}</h3>
+                            <p class="text-white/80">Активний абонемент</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">{{ days_left }}</div>
+                            <p class="text-white/80 text-sm">днів залишилось</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold mb-1">₴{{ current_subscription.price }}</div>
+                            <p class="text-white/80 text-sm">на місяць</p>
+                        </div>
+                        <div class="text-center lg:text-right">
+                            <button class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-xl font-medium transition-all">
+                                <i class="fas fa-cog mr-2"></i>Управління
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <!-- No Active Subscription -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-credit-card text-gray-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-secondary mb-2">Немає активного абонемента</h3>
+                    <p class="text-gray-600 mb-6">Оберіть підходящий тарифний план, щоб почати тренування</p>
+                    <button class="bg-primary hover:bg-primary/80 text-white px-8 py-3 rounded-xl font-bold transition-all">
+                        <i class="fas fa-shopping-cart mr-2"></i>Купити абонемент
+                    </button>
+                </div>
+            {% endif %}
+
+            <!-- Available Plans -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-secondary mb-6 flex items-center">
+                    <i class="fas fa-tags text-primary mr-3"></i>
+                    Доступні тарифні плани
+                </h2>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    {% for plan in subscription_plans %}
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 {% if plan.is_popular %}transform scale-105 ring-2 ring-primary{% endif %}">
+                            {% if plan.is_popular %}
+                                <div class="bg-gradient-to-r from-primary to-orange-600 text-white text-center py-2">
+                        <span class="font-bold text-sm uppercase tracking-wider">
+                            <i class="fas fa-star mr-1"></i>Популярний
+                        </span>
+                                </div>
+                            {% endif %}
+
+                            <div class="p-8">
+                                <div class="text-center mb-8">
+                                    <h3 class="text-2xl font-bold text-secondary mb-4">{{ plan.name }}</h3>
+                                    <div class="text-5xl font-black {% if plan.is_popular %}text-primary{% else %}text-secondary{% endif %} mb-2">
+                                        ₴{{ plan.price }}
+                                    </div>
+                                    <div class="text-gray-500">на {{ plan.period }}</div>
+                                </div>
+
+                                <!-- Features -->
+                                <ul class="space-y-4 mb-8">
+                                    {% for feature in plan.features %}
+                                        <li class="flex items-center space-x-3">
+                                            <i class="fas fa-check-circle text-green-500 text-xl flex-shrink-0"></i>
+                                            <span class="text-gray-700">{{ feature }}</span>
+                                        </li>
+                                    {% endfor %}
+
+                                    {% for excluded_feature in plan.excluded_features %}
+                                        <li class="flex items-center space-x-3">
+                                            <i class="fas fa-times-circle text-red-500 text-xl flex-shrink-0"></i>
+                                            <span class="text-gray-400">{{ excluded_feature }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+
+                                <!-- Action Button -->
+                                {% if current_subscription.name == plan.name %}
+                                    <button class="w-full bg-green-100 text-green-700 py-4 rounded-2xl font-bold text-lg cursor-default">
+                                        <i class="fas fa-check mr-2"></i>Поточний план
+                                    </button>
+                                {% else %}
+                                    <button class="w-full {% if plan.is_popular %}bg-gradient-to-r from-primary to-orange-600 hover:from-primary/80 hover:to-orange-700 text-white{% else %}bg-gray-100 hover:bg-primary hover:text-white text-secondary{% endif %} py-4 rounded-2xl font-bold text-lg transition-all transform hover:scale-105">
+                                        {% if current_subscription %}
+                                            <i class="fas fa-exchange-alt mr-2"></i>Змінити план
+                                        {% else %}
+                                            <i class="fas fa-shopping-cart mr-2"></i>Обрати план
+                                        {% endif %}
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Payment History -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-receipt text-primary mr-3"></i>
+                        Історія платежів
+                    </h3>
+
+                    {% if subscription_history %}
+                        <div class="space-y-4">
+                            {% for payment in subscription_history %}
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-credit-card text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-800">{{ payment.plan_name }}</p>
+                                            <p class="text-sm text-gray-500">{{ payment.date }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-bold text-gray-800">₴{{ payment.amount }}</p>
+                                        <span class="inline-block bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-medium">
+                                    Сплачено
+                                </span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-8">
+                            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-receipt text-gray-400 text-2xl"></i>
+                            </div>
+                            <p class="text-gray-500">Історія платежів порожня</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Subscription Benefits -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                        <i class="fas fa-gift text-primary mr-3"></i>
+                        Переваги абонемента
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-percentage text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Знижки на додаткові послуги</h4>
+                                <p class="text-sm text-gray-600">Персональні тренування зі знижкою 20%</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-users text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Запрошення друзів</h4>
+                                <p class="text-sm text-gray-600">Приведіть друга і отримайте 1 місяць безкоштовно</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-calendar-check text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Гнучке планування</h4>
+                                <p class="text-sm text-gray-600">Заморозка абонемента до 14 днів на рік</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-mobile-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-1">Мобільний додаток</h4>
+                                <p class="text-sm text-gray-600">Запис на тренування та трекінг прогресу</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mt-8">
+                <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                    <i class="fas fa-question-circle text-primary mr-3"></i>
+                    Часті питання
+                </h3>
+
+                <div class="space-y-4">
+                    <details class="group">
+                        <summary class="flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                            <span class="font-medium text-gray-800">Чи можу я заморозити абонемент?</span>
+                            <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 text-gray-600">
+                            Так, ви можете заморозити абонемент до 14 днів на рік. Для цього зверніться до адміністратора або скористайтеся особистим кабінетом.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                            <span class="font-medium text-gray-800">Чи можу я змінити тарифний план?</span>
+                            <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 text-gray-600">
+                            Так, ви можете змінити тарифний план у будь-який час. Зміни вступлять в силу з наступного періоду оплати.
+                        </div>
+                    </details>
+
+                    <details class="group">
+                        <summary class="flex items-center justify-between cursor-pointer p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                            <span class="font-medium text-gray-800">Чи є можливість повернення коштів?</span>
+                            <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                        </summary>
+                        <div class="p-4 text-gray-600">
+                            Повернення коштів можливе протягом 7 днів з моменту покупки абонемента за умови відсутності відвідувань.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
