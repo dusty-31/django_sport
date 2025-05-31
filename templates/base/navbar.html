@@ -20,7 +20,7 @@
                     </a>
                 {% else %}
                     <a href="{% url 'core:login' %}" class="text-white hover:text-primary transition-colors font-medium">Вхід</a>
-                    <a href="#" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">Реєстрація</a>
+                    <a href="{% url 'core:register' %}" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">Реєстрація</a>
                 {% endif %}
             </div>
 
@@ -42,7 +42,7 @@
                     <a href="{% url 'core:logout' %}" class="block text-white hover:text-primary transition-colors">Вихід</a>
                 {% else %}
                     <a href="{% url 'core:login' %}" class="block text-white hover:text-primary transition-colors">Вхід</a>
-                    <a href="#" class="block bg-primary text-white px-4 py-2 rounded-full text-center">Реєстрація</a>
+                    <a href="{% url 'core:register' %}" class="block bg-primary text-white px-4 py-2 rounded-full text-center">Реєстрація</a>
                 {% endif %}
             </div>
         </div>
