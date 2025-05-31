@@ -3,7 +3,7 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-20">
             <!-- Logo -->
-            <a href="{% url 'index' %}" class="text-3xl font-bold text-primary">
+            <a href="{% url 'core:index' %}" class="text-3xl font-bold text-primary">
                 <i class="fas fa-dumbbell mr-2"></i>PowerZone
             </a>
 
@@ -19,7 +19,7 @@
                         Вихід
                     </a>
                 {% else %}
-                    <a href="#" class="text-white hover:text-primary transition-colors font-medium">Вхід</a>
+                    <a href="{% url 'core:login' %}" class="text-white hover:text-primary transition-colors font-medium">Вхід</a>
                     <a href="#" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">Реєстрація</a>
                 {% endif %}
             </div>
@@ -33,7 +33,7 @@
         <!-- Mobile Menu -->
         <div class="lg:hidden hidden bg-secondary border-t border-gray-700" id="mobile-menu">
             <div class="px-4 py-6 space-y-4">
-                <a href="{% url 'index' %}" class="block text-white hover:text-primary transition-colors">Головна</a>
+                <a href="{% url 'core:index' %}" class="block text-white hover:text-primary transition-colors">Головна</a>
                 <a href="#" class="block text-white hover:text-primary transition-colors">Послуги</a>
                 <a href="#" class="block text-white hover:text-primary transition-colors">Розклад</a>
                 <a href="#" class="block text-white hover:text-primary transition-colors">Абонементи</a>
@@ -41,7 +41,7 @@
                     <a href="#" class="block text-white hover:text-primary transition-colors">Профіль</a>
                     <a href="#" class="block text-white hover:text-primary transition-colors">Вихід</a>
                 {% else %}
-                    <a href="#" class="block text-white hover:text-primary transition-colors">Вхід</a>
+                    <a href="{% url 'core:login' %}" class="block text-white hover:text-primary transition-colors">Вхід</a>
                     <a href="#" class="block bg-primary text-white px-4 py-2 rounded-full text-center">Реєстрація</a>
                 {% endif %}
             </div>
