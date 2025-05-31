@@ -1,0 +1,549 @@
+{% load static %}
+<!-- Schedule Section -->
+<section id="schedule" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black text-secondary mb-4">Знайдіть клас, який вам підходить</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Оберіть зручний час для ваших тренувань з нашим гнучким розкладом
+            </p>
+        </div>
+
+        <!-- Schedule Filter -->
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button class="schedule-filter active bg-primary text-white px-6 py-3 rounded-full font-semibold transition-all hover:bg-primary/80" data-filter="all">
+                Всі заняття
+            </button>
+            <button class="schedule-filter bg-white text-gray-700 px-6 py-3 rounded-full font-semibold border border-gray-200 transition-all hover:bg-gray-50" data-filter="cardio">
+                Кардіо
+            </button>
+            <button class="schedule-filter bg-white text-gray-700 px-6 py-3 rounded-full font-semibold border border-gray-200 transition-all hover:bg-gray-50" data-filter="strength">
+                Силові
+            </button>
+            <button class="schedule-filter bg-white text-gray-700 px-6 py-3 rounded-full font-semibold border border-gray-200 transition-all hover:bg-gray-50" data-filter="crossfit">
+                Кросфіт
+            </button>
+            <button class="schedule-filter bg-white text-gray-700 px-6 py-3 rounded-full font-semibold border border-gray-200 transition-all hover:bg-gray-50" data-filter="boxing">
+                Бокс
+            </button>
+            <button class="schedule-filter bg-white text-gray-700 px-6 py-3 rounded-full font-semibold border border-gray-200 transition-all hover:bg-gray-50" data-filter="yoga">
+                Йога
+            </button>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[900px]">
+                    <thead class="bg-secondary text-white">
+                    <tr>
+                        <th class="py-6 px-4 text-left font-bold text-lg w-32">Час</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">Понеділок</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">Вівторок</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">Середа</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">Четвер</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">П'ятниця</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">Субота</th>
+                        <th class="py-6 px-4 text-center font-bold text-lg">Неділя</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Early Morning -->
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="py-6 px-4 font-bold text-secondary bg-gray-50">06:00 - 07:00</td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="06:00-07:00" data-day="Понеділок">
+                                <div class="font-bold">Кардіо Burn</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-blue-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-blue-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="strength" data-trainer="Юрій Неонов" data-time="06:00-07:00" data-day="Вівторок">
+                                <div class="font-bold">Power Lifting</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Юрій
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>6/10
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="06:00-07:00" data-day="Середа">
+                                <div class="font-bold">CrossFit WOD</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>10/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="06:00-07:00" data-day="Четвер">
+                                <div class="font-bold">HIIT Кардіо</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>12/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="06:00-07:00" data-day="П'ятниця">
+                                <div class="font-bold">CrossFit</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-purple-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-purple-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="yoga" data-trainer="Софія Дзень" data-time="06:00-07:00" data-day="Субота">
+                                <div class="font-bold">Ранкова Йога</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Софія
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>5/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="text-gray-400 text-sm italic">Вихідний</div>
+                        </td>
+                    </tr>
+
+                    <!-- Morning -->
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="py-6 px-4 font-bold text-secondary bg-gray-50">08:00 - 09:00</td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-blue-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-blue-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="strength" data-trainer="Юрій Неонов" data-time="08:00-09:00" data-day="Понеділок">
+                                <div class="font-bold">Силові для початківців</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Юрій
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>7/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="08:00-09:00" data-day="Вівторок">
+                                <div class="font-bold">CrossFit Basics</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>9/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-blue-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-blue-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="strength" data-trainer="Юрій Неонов" data-time="08:00-09:00" data-day="Середа">
+                                <div class="font-bold">Power Training</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Юрій
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/10
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="08:00-09:00" data-day="Четвер">
+                                <div class="font-bold">Functional Training</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>11/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="08:00-09:00" data-day="П'ятниця">
+                                <div class="font-bold">Zumba Fitness</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>15/20
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-red-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-red-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="boxing" data-trainer="Макс Вірастюк" data-time="08:00-09:00" data-day="Субота">
+                                <div class="font-bold">Бокс для початківців</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Макс
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>6/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-purple-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-purple-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="yoga" data-trainer="Софія Дзень" data-time="08:00-09:00" data-day="Неділя">
+                                <div class="font-bold">Хатха Йога</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Софія
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/15
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Afternoon -->
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="py-6 px-4 font-bold text-secondary bg-gray-50">12:00 - 13:00</td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="12:00-13:00" data-day="Понеділок">
+                                <div class="font-bold">Обідня енергія</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>6/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-purple-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-purple-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="yoga" data-trainer="Софія Дзень" data-time="12:00-13:00" data-day="Вівторок">
+                                <div class="font-bold">Йога Флоу</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Софія
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>10/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-red-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-red-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="boxing" data-trainer="Макс Вірастюк" data-time="12:00-13:00" data-day="Середа">
+                                <div class="font-bold">Бойова підготовка</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Макс
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-blue-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-blue-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="strength" data-trainer="Юрій Неонов" data-time="12:00-13:00" data-day="Четвер">
+                                <div class="font-bold">Обідня сила</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Юрій
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>5/10
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="12:00-13:00" data-day="П'ятниця">
+                                <div class="font-bold">Dance Cardio</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>12/20
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="12:00-13:00" data-day="Субота">
+                                <div class="font-bold">Saturday WOD</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>7/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="text-gray-400 text-sm italic">Вихідний</div>
+                        </td>
+                    </tr>
+
+                    <!-- Evening Peak -->
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="py-6 px-4 font-bold text-secondary bg-gray-50">18:00 - 19:00</td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="18:00-19:00" data-day="Понеділок">
+                                <div class="font-bold">Evening CrossFit</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70 text-yellow-300">
+                                    <i class="fas fa-users mr-1"></i>15/15 ПОВНИЙ
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-red-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-red-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="boxing" data-trainer="Макс Вірастюк" data-time="18:00-19:00" data-day="Вівторок">
+                                <div class="font-bold">Boxing Club</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Макс
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>10/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="18:00-19:00" data-day="Середа">
+                                <div class="font-bold">CrossFit RX</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>12/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-red-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-red-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="boxing" data-trainer="Макс Вірастюк" data-time="18:00-19:00" data-day="Четвер">
+                                <div class="font-bold">Спаринг тренування</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Макс
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/10
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-blue-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-blue-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="strength" data-trainer="Юрій Неонов" data-time="18:00-19:00" data-day="П'ятниця">
+                                <div class="font-bold">Вечірня сила</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Юрій
+                                </div>
+                                <div class="text-xs opacity-70 text-yellow-300">
+                                    <i class="fas fa-users mr-1"></i>10/10 ПОВНИЙ
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="18:00-19:00" data-day="Субота">
+                                <div class="font-bold">Weekend Burn</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>11/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="text-gray-400 text-sm italic">Вихідний</div>
+                        </td>
+                    </tr>
+
+                    <!-- Late Evening -->
+                    <tr class="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                        <td class="py-6 px-4 font-bold text-secondary bg-gray-50">19:00 - 20:00</td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-purple-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-purple-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="yoga" data-trainer="Софія Дзень" data-time="19:00-20:00" data-day="Понеділок">
+                                <div class="font-bold">Вечірня Йога</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Софія
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>9/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="19:00-20:00" data-day="Вівторок">
+                                <div class="font-bold">Кардіо мікс</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>13/18
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-purple-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-purple-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="yoga" data-trainer="Софія Дзень" data-time="19:00-20:00" data-day="Середа">
+                                <div class="font-bold">Інь Йога</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Софія
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>7/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-primary text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-primary/80 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="cardio" data-trainer="Іван Мельник" data-time="19:00-20:00" data-day="Четвер">
+                                <div class="font-bold">Табата</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Іван
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>14/18
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-purple-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-purple-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="yoga" data-trainer="Софія Дзень" data-time="19:00-20:00" data-day="П'ятниця">
+                                <div class="font-bold">Релакс Йога</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Софія
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>6/15
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="class-item bg-green-500 text-white px-3 py-3 rounded-xl text-sm font-semibold cursor-pointer hover:bg-green-600 transition-all transform hover:scale-105 shadow-md"
+                                 data-type="crossfit" data-trainer="Анна Рибчак" data-time="19:00-20:00" data-day="Субота">
+                                <div class="font-bold">Saturday Night</div>
+                                <div class="text-xs opacity-80 mt-1">
+                                    <i class="fas fa-user mr-1"></i>Анна
+                                </div>
+                                <div class="text-xs opacity-70">
+                                    <i class="fas fa-users mr-1"></i>8/12
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-6 px-4 text-center">
+                            <div class="text-gray-400 text-sm italic">Вихідний</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Legend -->
+        <div class="flex flex-wrap justify-center gap-6 mt-8 text-sm">
+            <div class="flex items-center space-x-2">
+                <div class="w-4 h-4 bg-primary rounded"></div>
+                <span class="text-gray-600">Кардіо</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-4 h-4 bg-blue-500 rounded"></div>
+                <span class="text-gray-600">Силові</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-4 h-4 bg-green-500 rounded"></div>
+                <span class="text-gray-600">Кросфіт</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-4 h-4 bg-red-500 rounded"></div>
+                <span class="text-gray-600">Бокс</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <div class="w-4 h-4 bg-purple-500 rounded"></div>
+                <span class="text-gray-600">Йога</span>
+            </div>
+        </div>
+
+        <div class="text-center mt-8 space-y-4">
+            <a href="#" class="inline-flex items-center bg-primary hover:bg-primary/80 text-white px-8 py-3 rounded-full font-bold transition-all mr-4">
+                Повний розклад <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+            <a href="#" class="inline-flex items-center border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-bold transition-all">
+                Записатися на заняття <i class="fas fa-calendar-plus ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Class Details Modal -->
+<div id="classModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 relative">
+        <button onclick="closeClassModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-2xl">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="text-center mb-6">
+            <div id="modalIcon" class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-dumbbell text-white text-2xl"></i>
+            </div>
+            <h3 id="modalTitle" class="text-2xl font-bold text-secondary mb-2">Назва заняття</h3>
+            <p id="modalTime" class="text-gray-600">Час заняття</p>
+        </div>
+
+        <div class="space-y-4 mb-6">
+            <div class="flex items-center justify-between">
+                <span class="text-gray-600">Тренер:</span>
+                <span id="modalTrainer" class="font-semibold">Ім'я тренера</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-gray-600">Тривалість:</span>
+                <span class="font-semibold">60 хвилин</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-gray-600">Рівень:</span>
+                <span class="font-semibold">Для всіх</span>
+            </div>
+            <div class="flex items-center justify-between">
+                <span class="text-gray-600">Місць:</span>
+                <span id="modalCapacity" class="font-semibold">8/15</span>
+            </div>
+        </div>
+
+        <div class="text-center space-y-3">
+            {% if user.is_authenticated %}
+                <button class="w-full bg-primary hover:bg-primary/80 text-white py-3 rounded-xl font-bold transition-all">
+                    Записатися на заняття
+                </button>
+            {% else %}
+                <button onclick="window.location.href='#login'" class="w-full bg-primary hover:bg-primary/80 text-white py-3 rounded-xl font-bold transition-all">
+                    Увійти для запису
+                </button>
+            {% endif %}
+            <button onclick="closeClassModal()" class="w-full border border-gray-300 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-50 transition-all">
+                Закрити
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/schedule.js' %}"></script>

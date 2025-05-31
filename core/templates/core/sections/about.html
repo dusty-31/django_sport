@@ -1,0 +1,96 @@
+{% load static %}
+<!-- About Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Content -->
+            <div>
+                <div class="mb-6">
+                    <span class="bg-primary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+                        Про нас
+                    </span>
+                </div>
+                <h2 class="text-5xl font-black text-secondary mb-6">
+                    20 років досвіду у фітнес-індустрії
+                </h2>
+                <p class="text-xl text-gray-600 mb-8">
+                    PowerZone спеціалізується на наданні високоякісних фітнес-послуг з 2004 року.
+                    Ми маємо одну з найкращих команд тренерів у місті.
+                </p>
+
+                <!-- Features List -->
+                <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-medal text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary mb-2">Сертифіковані тренери</h4>
+                            <p class="text-gray-600 text-sm">Професійні тренери з міжнародними сертифікатами</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-tools text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary mb-2">Сучасне обладнання</h4>
+                            <p class="text-gray-600 text-sm">Найновіші тренажери від провідних брендів</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary mb-2">Спільнота</h4>
+                            <p class="text-gray-600 text-sm">Дружня атмосфера та підтримка однодумців</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-secondary mb-2">Результати</h4>
+                            <p class="text-gray-600 text-sm">Гарантовані результати при дотриманні програми</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#"
+                       class="bg-primary hover:bg-primary/80 text-white px-8 py-4 rounded-full font-bold transition-all text-center">
+                        Дізнатися більше
+                    </a>
+                    <a href="#"
+                       class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-bold transition-all text-center">
+                        Наші тренери
+                    </a>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="relative">
+                <div class="rounded-3xl overflow-hidden shadow-2xl">
+                    <img src="{% static 'img/gym_interior.avif' %}"
+                         alt="Gym Interior"
+                         class="w-full h-[500px] object-cover">
+                </div>
+                <!-- Floating Stats -->
+                <div class="absolute top-8 right-8 bg-white rounded-2xl p-6 shadow-xl">
+                    <div class="text-3xl font-black text-primary mb-1">{{ total_members|default:"500+" }}</div>
+                    <div class="text-sm text-gray-600 font-semibold">Задоволених клієнтів</div>
+                </div>
+
+                <div class="absolute bottom-8 left-8 bg-white rounded-2xl p-6 shadow-xl">
+                    <div class="text-3xl font-black text-primary mb-1">{{ years_experience|default:"20" }}</div>
+                    <div class="text-sm text-gray-600 font-semibold">Років досвіду</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,124 @@
+<!-- Pricing Section -->
+<section id="pricing" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black text-secondary mb-4">Наші абонементи</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Оберіть найкращий план для ваших тренувань з гнучкими умовами та доступними цінами
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <!-- Basic Plan -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-secondary mb-4">Базовий</h3>
+                    <div class="text-5xl font-black text-secondary mb-2">₴1200</div>
+                    <div class="text-gray-500">на місяць</div>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">Доступ до тренажерного залу</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">Групові заняття</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">Консультація тренера</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-times-circle text-red-500 text-xl"></i>
+                        <span class="text-gray-400">Персональні тренування</span>
+                    </li>
+                </ul>
+
+                <button class="w-full bg-gray-100 hover:bg-primary hover:text-white text-secondary py-4 rounded-2xl font-bold text-lg transition-all"
+                        onclick="{% if user.is_authenticated %}window.location.href='#'{% else %}window.location.href='#login'{% endif %}">
+                    Обрати план
+                </button>
+            </div>
+
+            <!-- Premium Plan (Featured) -->
+            <div class="bg-gradient-to-br from-primary to-orange-600 rounded-3xl p-8 shadow-2xl transform scale-105 text-white relative overflow-hidden">
+                <div class="absolute top-4 right-4 bg-accent text-secondary px-3 py-1 rounded-full text-sm font-bold">
+                    Популярний
+                </div>
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold mb-4">Преміум</h3>
+                        <div class="text-5xl font-black mb-2">₴2000</div>
+                        <div class="text-orange-100">на місяць</div>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-accent text-xl"></i>
+                            <span>Доступ до тренажерного залу</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-accent text-xl"></i>
+                            <span>Групові заняття</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-accent text-xl"></i>
+                            <span>4 персональні тренування</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-accent text-xl"></i>
+                            <span>Консультація дієтолога</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full bg-white text-primary py-4 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all"
+                            onclick="{% if user.is_authenticated %}window.location.href='#'{% else %}window.location.href='#login'{% endif %}">
+                        Обрати план
+                    </button>
+                </div>
+            </div>
+
+            <!-- VIP Plan -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-secondary mb-4">VIP</h3>
+                    <div class="text-5xl font-black text-secondary mb-2">₴3500</div>
+                    <div class="text-gray-500">на місяць</div>
+                </div>
+
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">Безлімітний доступ</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">8 персональних тренувань</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">Індивідуальна програма</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        <span class="text-gray-700">Консультації фахівців</span>
+                    </li>
+                </ul>
+
+                <button class="w-full bg-gray-100 hover:bg-primary hover:text-white text-secondary py-4 rounded-2xl font-bold text-lg transition-all"
+                        onclick="{% if user.is_authenticated %}window.location.href='#'{% else %}window.location.href='#login'{% endif %}">
+                    Обрати план
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="#"
+               class="inline-flex items-center text-primary font-bold text-lg hover:text-primary/80 transition-colors">
+                Переглянути всі плани <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>

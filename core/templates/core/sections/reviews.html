@@ -1,0 +1,91 @@
+{% load static %}
+
+<!-- Review Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black text-secondary mb-4">Відгуки наших клієнтів</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Дізнайтеся, що кажуть наші клієнти про тренування в PowerZone
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="bg-gray-50 rounded-3xl p-8 relative hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <img src="{% static 'img/review_avatar1.avif' %}"
+                         alt="Client"
+                         class="w-16 h-16 rounded-full object-cover mr-4">
+                    <div>
+                        <h4 class="font-bold text-secondary">Олексій Петренко</h4>
+                        <div class="text-gray-500 text-sm">Менеджер</div>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-6">
+                    "Тренуюся в PowerZone уже 2 роки. Професійні тренери, чудове обладнання та дружня атмосфера. Рекомендую всім!"
+                </p>
+                <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="bg-gray-50 rounded-3xl p-8 relative hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <img src="{% static 'img/review_avatar2.avif' %}"
+                         alt="Client"
+                         class="w-16 h-16 rounded-full object-cover mr-4">
+                    <div>
+                        <h4 class="font-bold text-secondary">Марія Коваленко</h4>
+                        <div class="text-gray-500 text-sm">Дизайнер</div>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-6">
+                    "Завжди боялася тренажерних залів, але тут створили таку підтримуючу атмосферу! Досягла своїх цілей завдяки індивідуальному підходу."
+                </p>
+                <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="bg-gray-50 rounded-3xl p-8 relative hover:shadow-xl transition-all duration-300">
+                <div class="flex items-center mb-6">
+                    <img src="{% static 'img/review_avatar3.avif' %}"
+                         alt="Client"
+                         class="w-16 h-16 rounded-full object-cover mr-4">
+                    <div>
+                        <h4 class="font-bold text-secondary">Андрій Мельник</h4>
+                        <div class="text-gray-500 text-sm">Програміст</div>
+                    </div>
+                </div>
+                <p class="text-gray-700 mb-6">
+                    "Зручний розклад, якісне обладнання та результат, який перевершив очікування. PowerZone - це більше ніж зал, це стиль життя!"
+                </p>
+                <div class="flex text-yellow-400">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Reviews link -->
+        <div class="text-center mt-12">
+            <a href="#" class="inline-flex items-center text-primary font-bold text-lg hover:text-primary/80 transition-colors">
+                Читати більше відгуків <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
