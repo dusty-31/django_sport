@@ -1,0 +1,224 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}PowerZone - Мої тренування{% endblock %}
+
+{% block content %}
+    <!-- My Workouts Section -->
+    <section class="pt-24 pb-16 bg-gray-50 min-h-screen">
+        <div class="container mx-auto px-4">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li>
+                        <a href="{% url 'core:index' %}" class="text-gray-500 hover:text-primary">Головна</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chevron-right text-gray-400 mx-2"></i>
+                    </li>
+                    <li class="text-gray-700 font-medium">
+                        <a href="{% url 'core:my_workouts' %}">Мої тренування</a>
+                    </li>
+                </ol>
+            </nav>
+
+            <!-- Header -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+                <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-secondary mb-2">Мої тренування</h1>
+                        <p class="text-gray-600">Відстежуйте свій прогрес та планові заняття</p>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-4 lg:mt-0">
+                        <button class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-xl font-bold transition-all inline-flex items-center">
+                            <i class="fas fa-plus mr-2"></i>Записатися на тренування
+                        </button>
+                        <button class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-xl font-bold transition-all inline-flex items-center">
+                            <i class="fas fa-calendar mr-2"></i>Календар
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Total Workouts -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-dumbbell text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-secondary mb-1">{{ total_workouts }}</h3>
+                    <p class="text-gray-600 text-sm">Всього тренувань</p>
+                </div>
+
+                <!-- This Month -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-check text-green-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-secondary mb-1">{{ this_month_workouts }}</h3>
+                    <p class="text-gray-600 text-sm">Цього місяця</p>
+                </div>
+
+                <!-- Next Workout -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-secondary mb-1">Завтра</h3>
+                    <p class="text-gray-600 text-sm">Наступне тренування</p>
+                </div>
+
+                <!-- Streak -->
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-fire text-orange-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-secondary mb-1">3</h3>
+                    <p class="text-gray-600 text-sm">Днів поспіль</p>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Upcoming Workouts -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-secondary flex items-center">
+                                <i class="fas fa-calendar-plus text-primary mr-3"></i>
+                                Майбутні тренування
+                            </h2>
+                            <a href="#" class="text-primary hover:text-primary/80 text-sm font-medium">
+                                Переглянути всі
+                            </a>
+                        </div>
+
+                        {% if upcoming_workouts %}
+                            <!-- Workout Cards will be here when data is available -->
+                            {% for workout in upcoming_workouts %}
+                                <!-- Workout card template -->
+                            {% endfor %}
+                        {% else %}
+                            <!-- Empty State -->
+                            <div class="text-center py-12">
+                                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-calendar-plus text-gray-400 text-3xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-700 mb-2">Немає запланованих тренувань</h3>
+                                <p class="text-gray-500 mb-6">Записайтеся на тренування, щоб почати свій фітнес-шлях</p>
+                                <button class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-xl font-bold transition-all">
+                                    <i class="fas fa-plus mr-2"></i>Записатися на тренування
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Past Workouts -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-bold text-secondary flex items-center">
+                                <i class="fas fa-history text-primary mr-3"></i>
+                                Історія тренувань
+                            </h2>
+                            <a href="#" class="text-primary hover:text-primary/80 text-sm font-medium">
+                                Переглянути всі
+                            </a>
+                        </div>
+
+                        {% if past_workouts %}
+                            <!-- Past workout cards will be here -->
+                            {% for workout in past_workouts %}
+                                <!-- Past workout card template -->
+                            {% endfor %}
+                        {% else %}
+                            <!-- Empty State -->
+                            <div class="text-center py-8">
+                                <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-history text-gray-400 text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-700 mb-2">Історія тренувань порожня</h3>
+                                <p class="text-gray-500">Ваші завершені тренування з'являться тут</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Quick Actions -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                            <i class="fas fa-lightning-bolt text-primary mr-3"></i>
+                            Швидкі дії
+                        </h3>
+
+                        <div class="space-y-3">
+                            <button class="w-full bg-primary hover:bg-primary/80 text-white px-4 py-3 rounded-xl font-medium transition-all flex items-center justify-center">
+                                <i class="fas fa-plus mr-2"></i>Нове тренування
+                            </button>
+
+                            <button class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white px-4 py-3 rounded-xl font-medium transition-all flex items-center justify-center">
+                                <i class="fas fa-calendar mr-2"></i>Розклад занять
+                            </button>
+
+                            <button class="w-full border-2 border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-xl font-medium transition-all flex items-center justify-center">
+                                <i class="fas fa-chart-line mr-2"></i>Мій прогрес
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Goal -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                            <i class="fas fa-target text-primary mr-3"></i>
+                            Тижнева ціль
+                        </h3>
+
+                        <div class="text-center mb-4">
+                            <div class="relative w-24 h-24 mx-auto mb-4">
+                                <svg class="w-24 h-24 transform -rotate-90" viewBox="0 0 36 36">
+                                    <path class="text-gray-200"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          stroke-width="3"
+                                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                    <path class="text-primary"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          stroke-width="3"
+                                          stroke-dasharray="60, 100"
+                                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="text-xl font-bold text-secondary">3/5</span>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 text-sm">3 з 5 тренувань</p>
+                        </div>
+
+                        <p class="text-center text-gray-500 text-sm">
+                            Ще 2 тренування до досягнення тижневої цілі!
+                        </p>
+                    </div>
+
+                    <!-- Fitness Tips -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                            <i class="fas fa-lightbulb text-primary mr-3"></i>
+                            Порада дня
+                        </h3>
+
+                        <div class="bg-primary/10 rounded-xl p-4">
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                <i class="fas fa-quote-left text-primary mr-2"></i>
+                                Пам'ятайте про важливість відновлення між тренуваннями. Якісний сон та правильне
+                                харчування - ключ до прогресу!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

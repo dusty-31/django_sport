@@ -1,0 +1,218 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}PowerZone - Мій профіль{% endblock %}
+
+{% block content %}
+    <!-- Profile Section -->
+    <section class="pt-24 pb-16 bg-gray-50 min-h-screen">
+        <div class="container mx-auto px-4">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm">
+                    <li><a href="{% url 'core:index' %}" class="text-gray-500 hover:text-primary">Головна</a></li>
+                    <li><i class="fas fa-chevron-right text-gray-400 mx-2"></i></li>
+                    <li class="text-gray-700 font-medium">Мій профіль</li>
+                </ol>
+            </nav>
+
+            <div class="max-w-6xl mx-auto">
+                <!-- Profile Header -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between">
+                        <div class="flex items-center space-x-6 mb-6 lg:mb-0">
+                            <!-- Avatar -->
+                            <div class="w-20 h-20 bg-gradient-to-br from-primary to-orange-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-3xl text-white"></i>
+                            </div>
+
+                            <!-- User Info -->
+                            <div>
+                                <h1 class="text-3xl font-bold text-secondary mb-2">
+                                    {% if user.get_full_name %}
+                                        {{ user.get_full_name }}
+                                    {% else %}
+                                        {{ user.username }}
+                                    {% endif %}
+                                </h1>
+                                <p class="text-gray-600 text-lg">@{{ user.username }}</p>
+                                {% if client_detail.fitness_goal %}
+                                    <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium mt-2">
+                                    {{ client_detail.get_fitness_goal_display }}
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Edit Button -->
+                        <a href="{% url 'core:profile_edit' %}"
+                           class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-xl font-bold transition-all inline-flex items-center">
+                            <i class="fas fa-edit mr-2"></i>Редагувати профіль
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Personal Information Card -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                            <i class="fas fa-user-circle text-primary mr-3"></i>
+                            Особиста інформація
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-100 pb-3">
+                                <span class="text-gray-600 text-sm block">Email</span>
+                                <span class="font-medium text-gray-800">{{ user.email|default:"Не вказано" }}</span>
+                            </div>
+
+                            <div class="border-b border-gray-100 pb-3">
+                                <span class="text-gray-600 text-sm block">Телефон</span>
+                                <span class="font-medium text-gray-800">{{ client_detail.phone|default:"Не вказано" }}</span>
+                            </div>
+
+                            <div class="border-b border-gray-100 pb-3">
+                                <span class="text-gray-600 text-sm block">Дата народження</span>
+                                <span class="font-medium text-gray-800">
+                                {% if client_detail.birth_date %}
+                                    {{ client_detail.birth_date|date:"d.m.Y" }}
+                                    {% if client_detail.age %}
+                                        <span class="text-gray-500">({{ client_detail.age }} років)</span>
+                                    {% endif %}
+                                {% else %}
+                                    Не вказано
+                                {% endif %}
+                            </span>
+                            </div>
+
+                            <div>
+                                <span class="text-gray-600 text-sm block">Стать</span>
+                                <span class="font-medium text-gray-800">{{ client_detail.get_gender_display|default:"Не вказано" }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fitness Information Card -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                            <i class="fas fa-dumbbell text-primary mr-3"></i>
+                            Фітнес інформація
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="border-b border-gray-100 pb-3">
+                                <span class="text-gray-600 text-sm block">Зріст</span>
+                                <span class="font-medium text-gray-800">
+                                {% if client_detail.height %}
+                                    {{ client_detail.height }} см
+                                {% else %}
+                                    Не вказано
+                                {% endif %}
+                            </span>
+                            </div>
+
+                            <div class="border-b border-gray-100 pb-3">
+                                <span class="text-gray-600 text-sm block">Вага</span>
+                                <span class="font-medium text-gray-800">
+                                {% if client_detail.weight %}
+                                    {{ client_detail.weight }} кг
+                                {% else %}
+                                    Не вказано
+                                {% endif %}
+                            </span>
+                            </div>
+
+                            {% if client_detail.bmi %}
+                                <div class="border-b border-gray-100 pb-3">
+                                    <span class="text-gray-600 text-sm block">ІМТ</span>
+                                    <span class="font-medium text-gray-800">{{ client_detail.bmi }}</span>
+                                </div>
+                            {% endif %}
+
+                            <div class="border-b border-gray-100 pb-3">
+                                <span class="text-gray-600 text-sm block">Рівень підготовки</span>
+                                <span class="font-medium text-gray-800">{{ client_detail.get_experience_level_display }}</span>
+                            </div>
+
+                            <div>
+                                <span class="text-gray-600 text-sm block">Фітнес ціль</span>
+                                <span class="font-medium text-gray-800">{{ client_detail.get_fitness_goal_display|default:"Не вказано" }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Card -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                            <i class="fas fa-lightning-bolt text-primary mr-3"></i>
+                            Швидкі дії
+                        </h3>
+
+                        <div class="space-y-4">
+                            <a href="{% url 'core:profile_edit' %}"
+                               class="w-full bg-primary hover:bg-primary/80 text-white px-4 py-3 rounded-xl font-medium transition-all flex items-center justify-center">
+                                <i class="fas fa-edit mr-2"></i>Редагувати профіль
+                            </a>
+
+                            <a href="{% url 'core:my_workouts' %}"
+                               class="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white px-4 py-3 rounded-xl font-medium transition-all flex items-center justify-center">
+                                <i class="fas fa-calendar-alt mr-2"></i>Мої тренування
+                            </a>
+
+                            <a href="#"
+                               class="w-full border-2 border-gray-300 text-gray-700 hover:bg-gray-50 px-4 py-3 rounded-xl font-medium transition-all flex items-center justify-center">
+                                <i class="fas fa-credit-card mr-2"></i>Абонементи
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information (if exists) -->
+                {% if client_detail.emergency_contact or client_detail.emergency_phone or client_detail.medical_conditions %}
+                    <div class="grid lg:grid-cols-2 gap-8 mt-8">
+                        <!-- Emergency Contact -->
+                        {% if client_detail.emergency_contact or client_detail.emergency_phone %}
+                            <div class="bg-white rounded-2xl shadow-lg p-6">
+                                <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                                    <i class="fas fa-phone-alt text-primary mr-3"></i>
+                                    Екстрений контакт
+                                </h3>
+
+                                <div class="space-y-4">
+                                    {% if client_detail.emergency_contact %}
+                                        <div class="border-b border-gray-100 pb-3">
+                                            <span class="text-gray-600 text-sm block">Контактна особа</span>
+                                            <span class="font-medium text-gray-800">{{ client_detail.emergency_contact }}</span>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if client_detail.emergency_phone %}
+                                        <div>
+                                            <span class="text-gray-600 text-sm block">Телефон</span>
+                                            <span class="font-medium text-gray-800">{{ client_detail.emergency_phone }}</span>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+
+                        <!-- Medical Information -->
+                        {% if client_detail.medical_conditions %}
+                            <div class="bg-white rounded-2xl shadow-lg p-6">
+                                <h3 class="text-xl font-bold text-secondary mb-6 flex items-center">
+                                    <i class="fas fa-heartbeat text-primary mr-3"></i>
+                                    Медична інформація
+                                </h3>
+
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4">
+                                    <p class="text-gray-700">{{ client_detail.medical_conditions }}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
