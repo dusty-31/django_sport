@@ -15,7 +15,7 @@
                 <a href="#" class="text-white hover:text-primary transition-colors font-medium">Абонементи</a>
                 {% if user.is_authenticated %}
                     <a href="#" class="text-white hover:text-primary transition-colors font-medium">Профіль</a>
-                    <a href="#" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">
+                    <a href="{% url 'core:logout' %}" class="bg-primary hover:bg-primary/80 text-white px-6 py-2 rounded-full transition-all">
                         Вихід
                     </a>
                 {% else %}
@@ -39,7 +39,7 @@
                 <a href="#" class="block text-white hover:text-primary transition-colors">Абонементи</a>
                 {% if user.is_authenticated %}
                     <a href="#" class="block text-white hover:text-primary transition-colors">Профіль</a>
-                    <a href="#" class="block text-white hover:text-primary transition-colors">Вихід</a>
+                    <a href="{% url 'core:logout' %}" class="block text-white hover:text-primary transition-colors">Вихід</a>
                 {% else %}
                     <a href="{% url 'core:login' %}" class="block text-white hover:text-primary transition-colors">Вхід</a>
                     <a href="#" class="block bg-primary text-white px-4 py-2 rounded-full text-center">Реєстрація</a>

@@ -1,4 +1,4 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from django.views import View
@@ -26,3 +26,9 @@ class LoginView(View):
             'form': form,
         }
         return render(request=request, template_name='core/login.html', context=context)
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('core:index')
