@@ -10,6 +10,7 @@
             <!-- Desktop Menu -->
             <div class="hidden lg:flex items-center space-x-8">
                 <a href="{% url 'core:index' %}" class="text-white hover:text-primary transition-colors font-medium">Головна</a>
+                <a href="{% url 'blog:blog' %}" class="text-white hover:text-primary transition-colors font-medium">Блог</a>
                 <a href="{% url 'core:services' %}" class="text-white hover:text-primary transition-colors font-medium">Послуги</a>
                 <a href="{% url 'core:full_schedule' %}" class="text-white hover:text-primary transition-colors font-medium">Розклад</a>
                 <a href="{% url 'core:subscriptions' %}" class="text-white hover:text-primary transition-colors font-medium">Абонементи</a>
@@ -67,7 +68,11 @@
         <div class="lg:hidden hidden bg-secondary border-t border-gray-700" id="mobile-menu">
             <div class="px-4 py-6 space-y-4">
                 <a href="{% url 'core:index' %}"
-                   class="block text-white hover:text-primary transition-colors">Головна</a>
+                   class="block text-white hover:text-primary transition-colors"
+                >
+                    Головна
+                </a>
+                <a href="{% url 'blog:blog' %}" class="block text-white hover:text-primary transition-colors">Блог</a>
                 <a href="{% url 'core:services' %}" class="block text-white hover:text-primary transition-colors">Послуги</a>
                 <a href="{% url 'core:full_schedule' %}" class="block text-white hover:text-primary transition-colors">Розклад</a>
                 <a href="{% url 'core:subscriptions' %}" class="block text-white hover:text-primary transition-colors">Абонементи</a>
