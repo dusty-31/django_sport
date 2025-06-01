@@ -14,4 +14,5 @@ urlpatterns = [
     path('profile/my_subscriptions/', views.MySubscriptionsView.as_view(), name='my_subscriptions'),
     path('services/', views.ServicesView.as_view(), name='services'),
     path('full_schedule/', views.FullScheduleView.as_view(), name='full_schedule'),
+    path('subscription/', views.SubscriptionsView.as_view(), name='subscriptions'),
 ]

@@ -475,3 +475,9 @@ class FullScheduleView(TemplateView):
             'weekday_names': weekday_names,
         })
         return context
+
+
+class SubscriptionsView(LoginRequiredMixin, TemplateView):
+    template_name = 'core/subscriptions.html'
+    login_url = reverse_lazy('core:login')
+

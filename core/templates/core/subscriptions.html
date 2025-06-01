@@ -1,0 +1,405 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}PowerZone - Абонементи{% endblock %}
+
+{% block content %}
+    <!-- Membership Page -->
+    <section class="pt-24 pb-16 bg-slate-50 min-h-screen">
+        <div class="container mx-auto px-4">
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-r from-slate-700 to-slate-600 rounded-2xl shadow-xl p-8 mb-8 text-white text-center">
+                <h1 class="text-4xl font-bold mb-3">Абонементи PowerZone</h1>
+                <p class="text-lg text-white/90 max-w-2xl mx-auto mb-6">
+                    Оберіть ідеальний план для досягнення ваших фітнес-цілей
+                </p>
+                <div class="flex justify-center items-center space-x-4 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-emerald-400"></i>
+                        <span>Без комісій</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-emerald-400"></i>
+                        <span>Заморозка абонемента</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-check-circle text-emerald-400"></i>
+                        <span>Гнучкі умови</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Membership Types Filter -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h2 class="text-xl font-bold text-slate-700 mb-4 text-center">Тип абонементу</h2>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button class="membership-filter active bg-rose-400 text-slate-700 px-6 py-3 rounded-full font-medium transition-all" data-filter="all">
+                        Всі абонементи
+                    </button>
+                    <button class="membership-filter bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-medium transition-all hover:bg-gray-200" data-filter="gym">
+                        Тренажерний зал
+                    </button>
+                    <button class="membership-filter bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-medium transition-all hover:bg-gray-200" data-filter="group">
+                        Групові заняття
+                    </button>
+                    <button class="membership-filter bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-medium transition-all hover:bg-gray-200" data-filter="personal">
+                        Персональні тренування
+                    </button>
+                    <button class="membership-filter bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-medium transition-all hover:bg-gray-200" data-filter="premium">
+                        Преміум
+                    </button>
+                </div>
+            </div>
+
+            <!-- Membership Plans -->
+            <div class="grid lg:grid-cols-3 gap-8 mb-8">
+                <!-- Basic Plan -->
+                <div class="membership-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-400 border-2 border-blue-200 relative overflow-hidden" data-type="gym">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 to-blue-400"></div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-dumbbell text-blue-400 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-700 mb-2">Базовий</h3>
+                            <p class="text-slate-500 text-sm">Ідеально для початківців</p>
+                        </div>
+
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-black text-slate-700 mb-2">₴1200</div>
+                            <div class="text-slate-500">на місяць</div>
+                            <div class="text-emerald-500 text-sm font-medium mt-1">Економія ₴400 річно</div>
+                        </div>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Доступ до тренажерного залу</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Роздягальні та душові</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Консультація тренера</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Програма тренувань</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-times-circle text-slate-400 text-lg"></i>
+                                <span class="text-slate-400">Групові заняття</span>
+                            </li>
+                        </ul>
+
+                        <button class="w-full bg-blue-200 hover:bg-blue-400 text-slate-700 py-3 rounded-xl font-bold transition-all">
+                            Обрати план
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Premium Plan (Featured) -->
+                <div class="membership-card bg-gradient-to-br from-rose-100 to-pink-100 rounded-2xl shadow-xl border-2 border-rose-400 relative overflow-hidden transform scale-105" data-type="group premium">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-400 to-pink-400"></div>
+                    <div class="absolute top-4 right-4 bg-rose-400 text-slate-700 px-3 py-1 rounded-full text-sm font-bold">
+                        Популярний
+                    </div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-rose-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-crown text-rose-400 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-700 mb-2">Преміум</h3>
+                            <p class="text-slate-600 text-sm">Найкращий вибір для активних</p>
+                        </div>
+
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-black text-slate-700 mb-2">₴2000</div>
+                            <div class="text-slate-600">на місяць</div>
+                            <div class="text-emerald-500 text-sm font-medium mt-1">Економія ₴800 річно</div>
+                        </div>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Усе з базового плану</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Групові заняття</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">4 персональні тренування</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Консультація дієтолога</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Безкоштовна заморозка</span>
+                            </li>
+                        </ul>
+
+                        <button class="w-full bg-rose-400 hover:bg-rose-400 text-slate-700 py-3 rounded-xl font-bold transition-all">
+                            Обрати план
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIP Plan -->
+                <div class="membership-card bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-400 border-2 border-purple-200 relative overflow-hidden" data-type="personal premium">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-200 to-purple-400"></div>
+                    <div class="p-8">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-gem text-purple-400 text-2xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-700 mb-2">VIP</h3>
+                            <p class="text-slate-500 text-sm">Максимальний комфорт</p>
+                        </div>
+
+                        <div class="text-center mb-6">
+                            <div class="text-4xl font-black text-slate-700 mb-2">₴3500</div>
+                            <div class="text-slate-500">на місяць</div>
+                            <div class="text-emerald-500 text-sm font-medium mt-1">Економія ₴1200 річно</div>
+                        </div>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Усе з преміум плану</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">8 персональних тренувань</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">VIP роздягальня</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Індивідуальна програма харчування</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+                                <span class="text-slate-600">Пріоритетний запис</span>
+                            </li>
+                        </ul>
+
+                        <button class="w-full bg-purple-200 hover:bg-purple-400 text-slate-700 py-3 rounded-xl font-bold transition-all">
+                            Обрати план
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Plans -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Student Plan -->
+                <div class="membership-card bg-white rounded-xl shadow-lg border border-emerald-200 p-6" data-type="gym group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-emerald-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-700">Студентський</h3>
+                            <p class="text-slate-500 text-sm">Спеціальна ціна для студентів</p>
+                        </div>
+                        <div class="ml-auto text-right">
+                            <div class="text-2xl font-bold text-slate-700">₴800</div>
+                            <div class="text-slate-500 text-sm">на місяць</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-emerald-400"></i>
+                            <span class="text-slate-600">Тренажерний зал</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-emerald-400"></i>
+                            <span class="text-slate-600">Групові заняття</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-emerald-400"></i>
+                            <span class="text-slate-600">Консультація тренера</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-info-circle text-blue-400"></i>
+                            <span class="text-slate-600">Потрібна студентська</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 bg-emerald-200 hover:bg-emerald-400 text-slate-700 py-2 rounded-lg font-medium transition-all">
+                        Дізнатися більше
+                    </button>
+                </div>
+
+                <!-- Family Plan -->
+                <div class="membership-card bg-white rounded-xl shadow-lg border border-orange-200 p-6" data-type="gym group">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-orange-400 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-700">Сімейний</h3>
+                            <p class="text-slate-500 text-sm">Для всієї родини (2+ людини)</p>
+                        </div>
+                        <div class="ml-auto text-right">
+                            <div class="text-2xl font-bold text-slate-700">₴4000</div>
+                            <div class="text-slate-500 text-sm">на місяць</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-emerald-400"></i>
+                            <span class="text-slate-600">До 4 членів сім'ї</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-emerald-400"></i>
+                            <span class="text-slate-600">Групові заняття</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-emerald-400"></i>
+                            <span class="text-slate-600">Дитяча кімната</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-star text-orange-400"></i>
+                            <span class="text-slate-600">Знижка 25%</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 bg-orange-200 hover:bg-orange-400 text-slate-700 py-2 rounded-lg font-medium transition-all">
+                        Дізнатися більше
+                    </button>
+                </div>
+            </div>
+
+            <!-- Day Passes -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-slate-700 mb-6 text-center">Разові відвідування</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="text-center p-4 border border-blue-200 rounded-lg hover:bg-blue-50 transition-all">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-clock text-blue-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-700 mb-2">Разове відвідування</h4>
+                        <div class="text-2xl font-bold text-slate-700 mb-1">₴150</div>
+                        <p class="text-slate-500 text-sm">Тренажерний зал</p>
+                    </div>
+                    <div class="text-center p-4 border border-rose-200 rounded-lg hover:bg-rose-50 transition-all">
+                        <div class="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-users text-rose-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-700 mb-2">Групове заняття</h4>
+                        <div class="text-2xl font-bold text-slate-700 mb-1">₴200</div>
+                        <p class="text-slate-500 text-sm">Одне заняття</p>
+                    </div>
+                    <div class="text-center p-4 border border-purple-200 rounded-lg hover:bg-purple-50 transition-all">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-user-tie text-purple-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-700 mb-2">Персональне</h4>
+                        <div class="text-2xl font-bold text-slate-700 mb-1">₴800</div>
+                        <p class="text-slate-500 text-sm">З тренером</p>
+                    </div>
+                    <div class="text-center p-4 border border-emerald-200 rounded-lg hover:bg-emerald-50 transition-all">
+                        <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-calendar-week text-emerald-400"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-700 mb-2">Тижневий пас</h4>
+                        <div class="text-2xl font-bold text-slate-700 mb-1">₴700</div>
+                        <p class="text-slate-500 text-sm">7 днів доступу</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-slate-700 mb-6 text-center">Часті запитання</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-rose-200 pl-4">
+                            <h4 class="font-semibold text-slate-700 mb-2">Чи можна заморозити абонемент?</h4>
+                            <p class="text-slate-600 text-sm">Так, ви можете заморозити абонемент на період від 1 тижня до 2 місяців.</p>
+                        </div>
+                        <div class="border-l-4 border-blue-200 pl-4">
+                            <h4 class="font-semibold text-slate-700 mb-2">Чи є пробний період?</h4>
+                            <p class="text-slate-600 text-sm">Так, перші 3 дні безкоштовно для нових клієнтів.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-emerald-200 pl-4">
+                            <h4 class="font-semibold text-slate-700 mb-2">Як оплачувати абонемент?</h4>
+                            <p class="text-slate-600 text-sm">Готівкою, картою або онлайн через сайт.</p>
+                        </div>
+                        <div class="border-l-4 border-purple-200 pl-4">
+                            <h4 class="font-semibold text-slate-700 mb-2">Чи можна відвідувати інші філії?</h4>
+                            <p class="text-slate-600 text-sm">З преміум та VIP абонементами - так, безкоштовно.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-gradient-to-r from-rose-400 to-pink-400 rounded-xl shadow-lg p-8 text-center text-slate-700">
+                <h2 class="text-3xl font-bold mb-4">Готові почати?</h2>
+                <p class="text-slate-600 mb-6 max-w-2xl mx-auto">
+                    Оберіть абонемент, який підходить саме вам, та зробіть перший крок до здорового способу життя
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                    {% if user.is_authenticated %}
+                        <button class="bg-white text-slate-700 px-8 py-3 rounded-xl font-bold hover:bg-slate-50 transition-all shadow-md">
+                            <i class="fas fa-credit-card mr-2"></i>Купити абонемент
+                        </button>
+                    {% else %}
+                        <a href="{% url 'core:register' %}" class="bg-white text-slate-700 px-8 py-3 rounded-xl font-bold hover:bg-slate-50 transition-all shadow-md">
+                            <i class="fas fa-user-plus mr-2"></i>Зареєструватися
+                        </a>
+                    {% endif %}
+                    <button class="border-2 border-white text-white hover:bg-white hover:text-slate-700 px-8 py-3 rounded-xl font-bold transition-all">
+                        <i class="fas fa-phone mr-2"></i>Консультація
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.membership-filter');
+            const membershipCards = document.querySelectorAll('.membership-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-rose-400', 'text-slate-700');
+                        btn.classList.add('bg-gray-100', 'text-gray-700');
+                    });
+
+                    this.classList.add('active', 'bg-rose-400', 'text-slate-700');
+                    this.classList.remove('bg-gray-100', 'text-gray-700');
+
+                    // Filter membership cards
+                    membershipCards.forEach(card => {
+                        const cardTypes = card.dataset.type ? card.dataset.type.split(' ') : [];
+
+                        if (filter === 'all' || cardTypes.includes(filter)) {
+                            card.style.display = 'block';
+                            card.style.opacity = '1';
+                        } else {
+                            card.style.display = 'none';
+                            card.style.opacity = '0';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}
