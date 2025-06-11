@@ -38,10 +38,6 @@ class PostAdmin(admin.ModelAdmin):
         ('Налаштування', {
             'fields': ('status', 'is_featured', 'reading_time')
         }),
-        ('SEO', {
-            'fields': ('meta_description', 'meta_keywords'),
-            'classes': ('collapse',)
-        }),
     )
 
 
